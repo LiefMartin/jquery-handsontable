@@ -620,7 +620,7 @@ Handsontable.Core = function (rootElement, userSettings) {
       for (r = corners.TL.row; r <= corners.BR.row; r++) {
         for (c = corners.TL.col; c <= corners.BR.col; c++) {
           if (!instance.getCellMeta(r, c).readOnly) {
-            changes.push([r, c, '']);
+            changes.push([r, c, null]);
           }
         }
       }

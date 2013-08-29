@@ -68,7 +68,7 @@ describe('Core_beforechange', function () {
 
       handsontable({
         beforeChange: function (changes) {
-          if (changes[0][2] === "test" && changes[0][3] === "") {
+          if (changes[0][2] === "test" && changes[0][3] === null) {
             called = true;
           }
         }
