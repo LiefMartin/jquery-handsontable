@@ -1553,6 +1553,7 @@ Handsontable.Core = function (rootElement, userSettings) {
   function validateChanges(changes, source, callback) {
     var waitingForValidator = new ValidatorsQueue();
     waitingForValidator.onQueueEmpty = resolve;
+    waitingForValidator.addValidatorToQueue(); //performance hack -- don't allow the onQueueEmpty function to fire until we've added everything.
 
     for (var i = changes.length - 1; i >= 0; i--) {
       if (changes[i] === null) {
@@ -1587,7 +1588,7 @@ Handsontable.Core = function (rootElement, userSettings) {
         }
       }
     }
-    waitingForValidator.checkIfQueueIsEmpty();
+    waitingForValidator.removeValidatorFormQueue(); //performance hack -- don't allow the onQueueEmpty function to fire until we've added everything.
 
     function resolve() {
       var beforeChangeResult;
@@ -2299,6 +2300,7 @@ Handsontable.Core = function (rootElement, userSettings) {
    */
   this.validateCells = function (callback) {
     var waitingForValidator = new ValidatorsQueue();
+    waitingForValidator.addValidatorToQueue();  //Performance hack -- don't allow the onQueueEmpty function to fire until we've added everything.
     waitingForValidator.onQueueEmpty = callback;
 
     var i = instance.countRows() - 1;
@@ -2313,7 +2315,7 @@ Handsontable.Core = function (rootElement, userSettings) {
       }
       i--;
     }
-    waitingForValidator.checkIfQueueIsEmpty();
+    waitingForValidator.removeValidatorFormQueue(); //Performance hack -- don't allow the onQueueEmpty function to fire until we've added everything.
   };
 
   /**
