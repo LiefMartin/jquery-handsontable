@@ -928,6 +928,7 @@ Handsontable.Core = function (rootElement, userSettings) {
 
     instance.forceFullRender = true; //used when data was changed
     grid.adjustRowsAndCols();
+    instance.PluginHooks.run('beforeChangeRender', changes, source);
     selection.refreshBorders(null, true);
     instance.PluginHooks.run('afterChange', changes, source || 'edit');
   }

@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Mon Mar 31 2014 14:19:47 GMT+0200 (CEST)
+ * Date: Wed Aug 20 2014 15:53:59 GMT+0930 (Cen. Australia Standard Time)
  */
 /*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
@@ -1116,6 +1116,7 @@ Handsontable.Core = function (rootElement, userSettings) {
 
     instance.forceFullRender = true; //used when data was changed
     grid.adjustRowsAndCols();
+    instance.PluginHooks.run('beforeChangeRender', changes, source);
     selection.refreshBorders(null, true);
     instance.PluginHooks.run('afterChange', changes, source || 'edit');
   }
@@ -6968,6 +6969,7 @@ Handsontable.PluginHookClass = (function () {
       beforeInit: [],
       beforeRender: [],
       beforeChange: [],
+      beforeChangeRender: [],
       beforeRemoveCol: [],
       beforeRemoveRow: [],
       beforeValidate: [],
@@ -8783,7 +8785,7 @@ Handsontable.PluginHooks.add('afterGetColWidth', htManualColumnResize.getColWidt
      */
     function removeLengthRelatedPatches(rawPatches){
       return rawPatches.filter(function(patch){
-        return !/[/]length/ig.test(patch.path);
+        return !/\/length/ig.test(patch.path);
       })
     }
 
