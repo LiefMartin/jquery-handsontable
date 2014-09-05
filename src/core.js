@@ -475,7 +475,7 @@ Handsontable.Core = function (rootElement, userSettings) {
     transformStart: function (rowDelta, colDelta, force) {
       if (priv.selStart.row() + rowDelta > instance.countRows() - 1) {
         if (force && priv.settings.minSpareRows > 0) {
-          instance.alter("insert_row", instance.countRows());
+          instance.alter("insert_row", instance.countRows(), 1, "transformStart", true);
         }
         else if (priv.settings.autoWrapCol) {
           rowDelta = 1 - instance.countRows();

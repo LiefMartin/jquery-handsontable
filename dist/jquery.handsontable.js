@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Wed Aug 20 2014 15:53:59 GMT+0930 (Cen. Australia Standard Time)
+ * Date: Fri Sep 05 2014 11:39:13 GMT+0930 (Cen. Australia Standard Time)
  */
 /*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
@@ -663,7 +663,7 @@ Handsontable.Core = function (rootElement, userSettings) {
     transformStart: function (rowDelta, colDelta, force) {
       if (priv.selStart.row() + rowDelta > instance.countRows() - 1) {
         if (force && priv.settings.minSpareRows > 0) {
-          instance.alter("insert_row", instance.countRows());
+          instance.alter("insert_row", instance.countRows(), 1, "transformStart", true);
         }
         else if (priv.settings.autoWrapCol) {
           rowDelta = 1 - instance.countRows();
