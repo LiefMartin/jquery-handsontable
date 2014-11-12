@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Fri Sep 05 2014 11:39:13 GMT+0930 (Cen. Australia Standard Time)
+ * Date: Wed Nov 12 2014 10:27:18 GMT+1030 (Cen. Australia Daylight Time)
  */
 /*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
@@ -6450,7 +6450,7 @@ CopyPasteClass.prototype.triggerPaste = function (event, str) {
   var that = this;
   if (that.pasteCallbacks) {
     setTimeout(function () {
-      var val = (str || that.elTextarea.value).replace(/\n$/, ''); //remove trailing newline
+      var val = (str || that.elTextarea.value);
       for (var i = 0, ilen = that.pasteCallbacks.length; i < ilen; i++) {
         that.pasteCallbacks[i](val, event);
       }
@@ -9502,7 +9502,7 @@ if (typeof Handsontable !== 'undefined') {
         return;
       }
 
-      var input = str.replace(/^[\r\n]*/g, '').replace(/[\r\n]*$/g, '') //remove newline from the start and the end of the input
+      var input = str
         , inputArray = SheetClip.parse(input)
         , selected = instance.getSelected()
         , coords = instance.getCornerCoords([{row: selected[0], col: selected[1]}, {row: selected[2], col: selected[3]}])

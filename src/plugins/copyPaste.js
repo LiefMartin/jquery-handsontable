@@ -22,7 +22,7 @@
         return;
       }
 
-      var input = str.replace(/^[\r\n]*/g, '').replace(/[\r\n]*$/g, '') //remove newline from the start and the end of the input
+      var input = str
         , inputArray = SheetClip.parse(input)
         , selected = instance.getSelected()
         , coords = instance.getCornerCoords([{row: selected[0], col: selected[1]}, {row: selected[2], col: selected[3]}])
